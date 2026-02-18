@@ -1,0 +1,9 @@
+.env
+*.local
+.DS_Store
+node_modules/
+dist/
+bun.lock
+.worktrees/
+.claude/settings.json
+.claude/settings.local.json

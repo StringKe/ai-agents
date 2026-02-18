@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    {
+      "name": "ai-agents",
+      "description": "Claude Code SDLC 工作流插件：16 个技能覆盖完整开发生命周期",
+      "git_url": "https://github.com/StringKe/ai-agents.git",
+      "author": "StringKe",
+      "tags": ["sdlc", "workflow", "tdd", "debugging", "code-review", "chinese"]
+    }
+  ]
+}

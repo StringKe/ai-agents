@@ -1,0 +1,151 @@
+{
+  "$schema": "https://claudex.space/schemas/sets/v1.json",
+  "name": "ai-agents",
+  "version": "1.0.0",
+  "description": "Claude Code SDLC 工作流插件：16 个技能覆盖完整开发生命周期",
+  "author": "StringKe",
+  "homepage": "https://github.com/StringKe/ai-agents",
+  "license": "MIT",
+  "components": {
+    "claude_md": {
+      "path": "CLAUDE.md"
+    },
+    "rules": [
+      {
+        "name": "sdlc-workflow",
+        "path": "rules/sdlc-workflow.md",
+        "description": "SDLC 工作流感知与导航"
+      }
+    ],
+    "skills": [
+      {
+        "name": "brainstorming",
+        "path": "skills/brainstorming",
+        "description": "协作式需求探索与设计"
+      },
+      {
+        "name": "writing-plans",
+        "path": "skills/writing-plans",
+        "description": "编写细粒度实现计划"
+      },
+      {
+        "name": "executing-plans",
+        "path": "skills/executing-plans",
+        "description": "按计划逐任务执行实现"
+      },
+      {
+        "name": "subagent-driven-development",
+        "path": "skills/subagent-driven-development",
+        "description": "子代理驱动的并行开发"
+      },
+      {
+        "name": "test-driven-development",
+        "path": "skills/test-driven-development",
+        "description": "测试驱动开发（红绿重构）"
+      },
+      {
+        "name": "systematic-debugging",
+        "path": "skills/systematic-debugging",
+        "description": "四阶段系统化调试"
+      },
+      {
+        "name": "verification-before-completion",
+        "path": "skills/verification-before-completion",
+        "description": "完成前验证"
+      },
+      {
+        "name": "requesting-code-review",
+        "path": "skills/requesting-code-review",
+        "description": "请求代码审查"
+      },
+      {
+        "name": "receiving-code-review",
+        "path": "skills/receiving-code-review",
+        "description": "处理代码审查反馈"
+      },
+      {
+        "name": "using-git-worktrees",
+        "path": "skills/using-git-worktrees",
+        "description": "Git Worktree 隔离工作空间"
+      },
+      {
+        "name": "finishing-a-development-branch",
+        "path": "skills/finishing-a-development-branch",
+        "description": "完成开发分支收尾"
+      },
+      {
+        "name": "dispatching-parallel-agents",
+        "path": "skills/dispatching-parallel-agents",
+        "description": "并行代理调度"
+      },
+      {
+        "name": "writing-skills",
+        "path": "skills/writing-skills",
+        "description": "编写 Claude Code 技能文件"
+      },
+      {
+        "name": "done",
+        "path": "skills/done",
+        "description": "会话知识整理到 ~/docs/"
+      },
+      {
+        "name": "daily",
+        "path": "skills/daily",
+        "description": "生成今日工作日报"
+      },
+      {
+        "name": "weekly",
+        "path": "skills/weekly",
+        "description": "生成本周工作周报"
+      }
+    ],
+    "mcp_servers": [
+      {
+        "name": "context7",
+        "type": "http",
+        "url": "https://mcp.context7.com/mcp",
+        "headers": {
+          "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+        },
+        "description": "框架/库官方文档查询"
+      },
+      {
+        "name": "gh_grep",
+        "type": "http",
+        "url": "https://mcp.grep.app",
+        "description": "GitHub 代码搜索"
+      },
+      {
+        "name": "perplexity",
+        "type": "stdio",
+        "command": "npx",
+        "args": ["-y", "@perplexity-ai/mcp-server"],
+        "env": {
+          "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}"
+        },
+        "description": "实时联网搜索",
+        "setup": "npx 由 Node.js 提供: https://nodejs.org/"
+      },
+      {
+        "name": "qmd",
+        "type": "stdio",
+        "command": "qmd",
+        "args": ["mcp"],
+        "description": "本地 Markdown 知识库",
+        "setup": "cargo install qmd (https://github.com/stevearc/qmd)"
+      }
+    ]
+  },
+  "env": [
+    {
+      "name": "CONTEXT7_API_KEY",
+      "description": "Context7 API Key (申请: https://context7.com)",
+      "required": false
+    },
+    {
+      "name": "PERPLEXITY_API_KEY",
+      "description": "Perplexity API Key (申请: https://www.perplexity.ai/settings/api)",
+      "required": false
+    }
+  ]
+}
