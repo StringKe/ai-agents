@@ -17,8 +17,3 @@ env = { PERPLEXITY_API_KEY = "${PERPLEXITY_API_KEY}" }
 type = "local"
 command = "qmd"
 args = ["mcp"]
-
-[mcp_servers.nowledge-mem]
-type = "http"
-url = "http://127.0.0.1:${NOWLEDGE_MEM_PORT}/mcp"
-headers = { APP = "Codex" }

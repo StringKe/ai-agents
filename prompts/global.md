@@ -10,14 +10,12 @@
 | **gh_grep** | 代码搜索 | 搜 GitHub 代码示例 |
 | **perplexity** | 实时联网 | 查最新信息/教程 |
 | **qmd** | Markdown 知识库搜索 | 搜本地 .md 文档 |
-| **nowledge-mem** | 知识记忆 | 跨会话持久化知识库 |
 
 **使用原则：**
 - 查官方文档用 `context7`
 - 搜 GitHub 代码示例用 `gh_grep`
 - 查最新/实时信息用 `perplexity`
 - 搜本地笔记/文档用 `qmd`
-- 持久化知识/记忆用 `nowledge-mem`
 - 标注信息来源
 
 ## 代码生成
@@ -80,6 +78,5 @@ kubectl --context prod-cluster get pods
 2. AI 自动生成文件标题（5–15 汉字）和标签（3–8 个）
 3. 提取关键讨论、决策记录、问题解决、后续行动
 4. 写入 `~/docs/YYYY-MM-DD/[标题].md`（中文，含 YAML metadata 头）
-5. 将决策、解决方案、索引同步到 `nowledge-mem` 知识库
 
 **何时使用：** 完成一个功能、结束一次排查、做完配置调整后调用。

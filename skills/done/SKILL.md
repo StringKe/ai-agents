@@ -1,6 +1,6 @@
 ---
 name: done
-description: 会话结束时整理知识，生成中文 Markdown 摘要文档并同步到 nowledge-mem 知识库。仅在用户显式触发 /done 时执行，不自动运行。
+description: 会话结束时整理知识，生成中文 Markdown 摘要文档并保存到本地。仅在用户显式触发 /done 时执行，不自动运行。
 disable-model-invocation: true
 argument-hint: [可选备注说明]
 allowed-tools: Bash, Write
@@ -109,29 +109,12 @@ Git变更文件: [GIT_STATUS]
 
 ---
 
-## 第四步：同步到 nowledge-mem
-
-使用 nowledge-mem MCP 工具，将以下内容分别存入知识库（每条为独立条目）：
-
-1. **文档索引**：文件标题 + 路径 + 标签 + 一句话摘要
-2. **每条决策**：决策问题 + 选择方案 + 决策原因
-3. **已解决的问题**：问题描述 + 解决方案（便于同类问题复用）
-4. **技术模式**（如有）：模式名称 + 适用场景 + 实现要点
-
-每条知识条目附加以下元数据：
-- 来源文档：`~/docs/[DATE]/[标题].md`
-- 日期：[DATE]
-- 标签：与文档相同的标签
-
----
-
-## 第五步：输出确认信息
+## 第四步：输出确认信息
 
 完成后在会话中输出：
 
 ```
 ✅ 文档已生成：~/docs/[DATE]/[标题].md
-✅ [N] 条知识已同步到 nowledge-mem
 📌 标签：[标签列表]
 ```
 

@@ -21,13 +21,6 @@
     "qmd": {
       "type": "local",
       "command": ["qmd", "mcp"]
-    },
-    "nowledge-mem": {
-      "type": "remote",
-      "url": "http://127.0.0.1:${NOWLEDGE_MEM_PORT}/mcp",
-      "headers": {
-        "APP": "OpenCode"
-      }
     }
   }
 }

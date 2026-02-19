@@ -23,7 +23,6 @@
 | [gh_grep](https://grep.app) | GitHub 代码搜索 | 远程 HTTP |
 | [perplexity](https://www.perplexity.ai) | 实时联网查询 | 本地 stdio |
 | [qmd](https://github.com/tmc/misc/tree/master/cmd/qmd) | 本地 Markdown 知识库 | 本地 stdio |
-| nowledge-mem | 跨会话知识记忆，将 AI 会话产出的决策、解决方案持久化存储，支持跨会话检索复用 | 本地 HTTP |
 
 ### 配置模板
 
@@ -65,7 +64,6 @@ skills/
 2. AI 根据会话内容生成文件标题（5–15 汉字）和语义标签
 3. 提取关键讨论、决策记录、问题解决过程、后续行动项
 4. 输出中文 Markdown 文档至 `~/docs/YYYY-MM-DD/[标题].md`
-5. 将决策、解决方案、索引同步到 nowledge-mem 知识库
 
 **输出文件格式：**
 
@@ -88,18 +86,6 @@ Git分支: main
 ## 决策记录
 | 决策问题 | 选择方案 | 决策原因 |
 ...
-```
-
-**与 nowledge-mem 联动：**
-
-```
-触发 /done
-  ↓
-生成 ~/docs/YYYY-MM-DD/[标题].md
-  ↓
-nowledge-mem 存入：决策 + 已解决问题 + 文档索引
-  ↓
-下次会话：AI 通过 nowledge-mem 检索历史决策，延续上下文
 ```
 
 #### 安装方式

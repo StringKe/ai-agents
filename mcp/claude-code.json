@@ -21,13 +21,6 @@
     "qmd": {
       "command": "qmd",
       "args": ["mcp"]
-    },
-    "nowledge-mem": {
-      "type": "streamableHttp",
-      "url": "http://127.0.0.1:${NOWLEDGE_MEM_PORT}/mcp",
-      "headers": {
-        "APP": "Claude Code"
-      }
     }
   }
 }
