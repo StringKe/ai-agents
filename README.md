@@ -2,21 +2,19 @@
 
 Claude Code 全局配置集合：CLAUDE.md、Rules、Skills、MCP。
 
-## 目录结构
+## 通过 Claudex 安装（推荐）
 
-```
-ai-agents/
-├── CLAUDE.md                      → ~/.claude/CLAUDE.md              全局指令
-├── rules/
-│   └── sdlc-workflow.md           → ~/.claude/rules/                 SDLC 工作流规范
-├── skills/
-│   ├── done/SKILL.md              → ~/.claude/skills/done/           会话知识整理
-│   └── sdlc-workflow/SKILL.md     → ~/.claude/skills/sdlc-workflow/  开发工作流
-├── setup-mcp.sh                                                      MCP 一键配置脚本
-└── .env.example                                                      环境变量模板
+```bash
+# 全局安装（写入 ~/.claude/）
+claudex sets add --global https://github.com/StringKe/ai-agents.git
+
+# 项目级安装（写入当前项目 .claude/）
+claudex sets add https://github.com/StringKe/ai-agents.git
 ```
 
-## 安装
+安装 claudex：`curl -fsSL https://raw.githubusercontent.com/StringKe/claudex/main/install.sh | bash`
+
+## 手动安装
 
 ### 1. 复制配置文件
 
@@ -43,17 +41,6 @@ Claude Code 的 MCP 通过 `claude mcp add` 命令管理，配置存储在 `~/.c
 
 不要手动编辑 `~/.claude/settings.json` 的 `mcpServers` 字段，那里的配置不会被 `claude mcp` 命令识别，行为不可靠。
 
-#### 方式一：脚本安装
-
-```bash
-cp .env.example .env
-# 编辑 .env，填入 API Key
-chmod +x setup-mcp.sh
-./setup-mcp.sh
-```
-
-#### 方式二：手动执行
-
 ```bash
 # context7（需要 API Key，申请：https://context7.com）
 claude mcp add -t http -H "CONTEXT7_API_KEY: 你的Key" -s user context7 https://mcp.context7.com/mcp
@@ -68,23 +55,21 @@ claude mcp add -e PERPLEXITY_API_KEY=你的Key -s user perplexity -- npx -y @per
 claude mcp add -s user qmd -- qmd mcp
 ```
 
-#### 验证
+## 目录结构
 
-```bash
-claude mcp list
+```
+ai-agents/
+├── .claudex-sets.json                                    Claudex 配置集清单
+├── CLAUDE.md                      → ~/.claude/CLAUDE.md              全局指令
+├── rules/
+│   └── sdlc-workflow.md           → ~/.claude/rules/                 SDLC 工作流规范
+├── skills/
+│   ├── done/SKILL.md              → ~/.claude/skills/done/           会话知识整理
+│   └── sdlc-workflow/SKILL.md     → ~/.claude/skills/sdlc-workflow/  开发工作流
+└── .env.example                                                      环境变量模板
 ```
 
-所有 MCP 应显示 `Connected` 状态。
-
-#### 管理命令
-
-```bash
-claude mcp list                    # 查看所有 MCP
-claude mcp get <name>              # 查看单个 MCP 详情
-claude mcp remove <name> -s user   # 删除 MCP
-```
-
-## 配置说明
+## 组件说明
 
 ### CLAUDE.md
 
@@ -111,27 +96,11 @@ claude mcp remove <name> -s user   # 删除 MCP
 | [perplexity](https://www.perplexity.ai) | 实时联网搜索 | stdio | 需要 |
 | [qmd](https://github.com/tmc/misc/tree/master/cmd/qmd) | 本地 Markdown 知识库 | stdio | 不需要 |
 
-## 适配其他工具
+## 创建自己的配置集
 
-在任意 AI 编码工具中输入以下提示词，可根据本仓库生成等效配置：
+在仓库根目录创建 `.claudex-sets.json`，格式参考本仓库或 [JSON Schema](https://claudex.space/schemas/sets/v1.json)。
 
-```
-阅读 https://github.com/StringKe/ai-agents 仓库的所有文件。
-将 CLAUDE.md 的内容适配为本工具的全局提示词格式。
-将 rules/ 目录的内容适配为本工具支持的规则格式。
-将 skills/ 目录的内容适配为本工具支持的自定义命令格式。
-根据 README 中的 MCP 服务列表，适配为本工具的 MCP 配置格式。
-输出完整的配置文件和安装步骤。
-```
-
-各工具配置目录参考：
-
-| 工具 | 全局提示词 | 规则目录 | 技能目录 |
-|------|-----------|---------|---------|
-| Claude Code | `~/.claude/CLAUDE.md` | `~/.claude/rules/` | `~/.claude/skills/` |
-| Crush | `~/.config/crush/CRUSH.md` | `~/.config/crush/rules/` | `~/.config/crush/skills/` |
-| Codex | `~/.codex/AGENTS.md` | `~/.codex/rules/` | `~/.agents/skills/` |
-| OpenCode | `~/.config/opencode/AGENTS.md` | `~/.config/opencode/rules/` | `~/.agents/skills/` |
+提交到 [Claudex Sets Marketplace](https://claudex.space/marketplace) 让更多人发现你的配置集。
 
 ## License
 
