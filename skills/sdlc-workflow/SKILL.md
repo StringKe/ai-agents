@@ -14,7 +14,7 @@ allowed-tools: Bash, Write, Read, Edit, Glob, Grep
 
 ## 第一步：创建工作目录
 
-根据任务描述生成一个 `{slug}`（小写字母 + 连字符），然后执行：
+根据任务描述生成一个 `{slug}`（小写字母加连字符），然后执行：
 
 ```bash
 mkdir -p docs/sdlc/$(date +%Y-%m-%d)/{slug}
@@ -26,13 +26,13 @@ mkdir -p docs/sdlc/$(date +%Y-%m-%d)/{slug}
 
 ## 第二步：Research（深度调研）
 
-对任务进行**深入、详尽**的调研，不是浮于表面地看函数签名：
+对任务进行**深入、详尽**的调研：
 
 1. 使用 Glob、Grep、Read 工具全面搜索相关代码
 2. 理解现有架构、依赖关系、数据流、边界条件
 3. 将调研结果写入 `docs/sdlc/YYYY-MM-DD/{slug}/research.md`
 
-**禁止只给口头摘要——必须写入文件。**
+**禁止只给口头摘要，必须写入文件。**
 
 research.md 应包含：
 - 相关文件列表及其职责
@@ -137,14 +137,3 @@ AI 只更新 plan.md，绝不实现代码
 - 用户始终掌控**方向**，AI 掌控**执行**
 - 将调研、规划、实现放在**同一次长会话**中，不拆分到多次
 - 创造性工作发生在注释循环中，计划对了，执行就应该是无聊的
-
----
-
-## 工具适配说明
-
-| 工具 | Skill 路径 |
-|------|-----------|
-| Claude Code | `~/.claude/skills/sdlc-workflow/SKILL.md` |
-| Crush | `~/.config/crush/skills/sdlc-workflow/SKILL.md` |
-| Codex | `~/.agents/skills/sdlc-workflow/SKILL.md` |
-| OpenCode | `~/.agents/skills/sdlc-workflow/SKILL.md` |
