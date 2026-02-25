@@ -2,7 +2,27 @@
 
 Claude Code 全局配置集合：Memory、Rules、Skills、MCP。
 
-仓库目录结构与 `~/.claude/` 一一对应，安装即复制。
+## 快速配置
+
+在任意 AI 工具中输入以下提示词，即可根据本仓库自动生成等效配置：
+
+```
+阅读 https://github.com/StringKe/ai-agents 仓库的所有文件。
+将 CLAUDE.md 的内容适配为本工具的全局提示词格式。
+将 rules/ 目录的内容适配为本工具支持的规则格式。
+将 skills/ 目录的内容适配为本工具支持的自定义命令格式。
+将 settings.json 中的 MCP 配置适配为本工具的 MCP 配置格式。
+输出完整的配置文件和安装步骤。
+```
+
+各工具配置目录参考：
+
+| 工具 | 全局提示词 | 规则目录 | 技能目录 |
+|------|-----------|---------|---------|
+| Claude Code | `~/.claude/CLAUDE.md` | `~/.claude/rules/` | `~/.claude/skills/` |
+| Crush | `~/.config/crush/CRUSH.md` | `~/.config/crush/rules/` | `~/.config/crush/skills/` |
+| Codex | `~/.codex/AGENTS.md` | `~/.codex/rules/` | `~/.agents/skills/` |
+| OpenCode | `~/.config/opencode/AGENTS.md` | `~/.config/opencode/rules/` | `~/.agents/skills/` |
 
 ## 目录结构
 
@@ -19,7 +39,7 @@ ai-agents/
 └── .gitignore
 ```
 
-## 安装
+## 手动安装
 
 ```bash
 git clone https://github.com/StringKe/ai-agents.git
@@ -72,29 +92,6 @@ MCP 服务配置模板：
 | [gh_grep](https://grep.app) | GitHub 代码搜索 | HTTP | 不需要 |
 | [perplexity](https://www.perplexity.ai) | 实时联网搜索 | 本地 stdio | 需要 |
 | [qmd](https://github.com/tmc/misc/tree/master/cmd/qmd) | 本地 Markdown 知识库 | 本地 stdio | 不需要 |
-
-## 其他 AI 工具适配
-
-本仓库以 Claude Code 为核心。其他工具可通过读取本仓库生成等效配置。
-
-大部分 AI 工具支持读取 GitHub 仓库，直接输入以下提示词：
-
-```
-阅读 https://github.com/StringKe/ai-agents 仓库的所有文件。
-将 CLAUDE.md 的内容适配为本工具的全局提示词格式。
-将 rules/ 目录的内容适配为本工具支持的规则格式。
-将 skills/ 目录的内容适配为本工具支持的自定义命令格式。
-将 settings.json 中的 MCP 配置适配为本工具的 MCP 配置格式。
-输出完整的配置文件和安装步骤。
-```
-
-各工具配置目录参考：
-
-| 工具 | 全局提示词 | 规则目录 | 技能目录 |
-|------|-----------|---------|---------|
-| Crush | `~/.config/crush/CRUSH.md` | `~/.config/crush/rules/` | `~/.config/crush/skills/` |
-| Codex | `~/.codex/AGENTS.md` | `~/.codex/rules/` | `~/.agents/skills/` |
-| OpenCode | `~/.config/opencode/AGENTS.md` | `~/.config/opencode/rules/` | `~/.agents/skills/` |
 
 ## License
 
