@@ -53,14 +53,16 @@
         "env": {
           "PERPLEXITY_API_KEY": "${PERPLEXITY_API_KEY}"
         },
-        "description": "实时联网搜索"
+        "description": "实时联网搜索",
+        "setup": "npx 由 Node.js 提供: https://nodejs.org/"
       },
       {
         "name": "qmd",
         "type": "stdio",
         "command": "qmd",
         "args": ["mcp"],
-        "description": "本地 Markdown 知识库"
+        "description": "本地 Markdown 知识库",
+        "setup": "cargo install qmd (https://github.com/stevearc/qmd)"
       }
     ]
   },
