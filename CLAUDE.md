@@ -35,6 +35,17 @@
 - 搜本地笔记/文档用 `qmd`
 - 标注信息来源
 
+# Shell 环境
+
+Bash 工具使用 /bin/bash，不加载 zsh 配置（.zshrc/.zshenv）。mise/nvm/zoxide 等 zsh 插件管理的命令在 Bash 工具中不可用。
+
+遇到 command not found 时，用 `/opt/homebrew/bin/` 下的绝对路径：
+- node: `/opt/homebrew/bin/node`
+- npx: `/opt/homebrew/bin/npx`
+- 其他 brew 工具: `/opt/homebrew/bin/<command>`
+
+对于 mise 管理的工具，用 `mise which <tool>` 获取当前绝对路径。
+
 # 代码输出
 
 - 输出完整可运行代码：imports、依赖、配置、目录结构
