@@ -3,6 +3,9 @@
   "owner": {
     "name": "StringKe"
   },
+  "metadata": {
+    "description": "SDLC 工作流技能集：需求探索、计划编写、TDD、调试、代码审查、并行代理协作"
+  },
   "plugins": [
     {
       "name": "ai-agents",
