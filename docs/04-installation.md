@@ -16,16 +16,26 @@ Claude Code 插件支持 skills、agents、hooks、MCP servers、LSP servers。*
 
 推荐使用 `user` scope 安装，所有项目统一生效。
 
+## 前置条件：环境变量
+
+插件通过 `.mcp.json` 自动配置 MCP 服务，API Key 从环境变量读取。安装插件前，在 shell 配置中 export 以下变量：
+
+```bash
+# 添加到 ~/.zsh_secrets 或 ~/.bashrc
+export CONTEXT7_API_KEY=your_key_here      # 申请: https://context7.com
+export PERPLEXITY_API_KEY=your_key_here    # 申请: https://www.perplexity.ai/settings/api
+```
+
+参考 `.env.example` 查看完整变量列表。gh_grep 和 qmd 无需 API Key。
+
 ## 方式一：Claude Code Plugin（推荐）
 
 ```bash
-# 1. 添加 marketplace
+# 1. 添加 marketplace 并安装插件（默认 user scope，全局生效）
 claude plugin marketplace add StringKe/ai-agents
-
-# 2. 安装插件（默认 user scope，全局生效）
 claude plugin install ai-agents@ai-agents-marketplace
 
-# 3. 手动复制 Rule（插件不支持 rules）
+# 2. 手动复制 Rule（插件不支持 rules）
 git clone https://github.com/StringKe/ai-agents.git /tmp/ai-agents
 mkdir -p ~/.claude/rules
 cp /tmp/ai-agents/rules/sdlc-workflow.md ~/.claude/rules/
@@ -33,6 +43,8 @@ rm -rf /tmp/ai-agents
 ```
 
 安装后技能以 `ai-agents:` 为命名空间前缀，例如 `/ai-agents:brainstorming`。
+
+MCP 服务由插件的 `.mcp.json` 自动加载，无需手动执行 `claude mcp add`。
 
 ## 方式二：本地开发测试
 
@@ -77,21 +89,12 @@ mkdir -p ~/.claude/agents
 cp agents/code-reviewer.md ~/.claude/agents/
 ```
 
-## MCP 服务配置
-
-Claude Code 的 MCP 通过 `claude mcp add` 命令管理。
+手动安装时 MCP 需要单独配置：
 
 ```bash
-# context7（需要 API Key，申请：https://context7.com）
-claude mcp add -t http -H "CONTEXT7_API_KEY: 你的Key" -s user context7 https://mcp.context7.com/mcp
-
-# gh_grep（无需 API Key）
+claude mcp add -t http -H "CONTEXT7_API_KEY: $CONTEXT7_API_KEY" -s user context7 https://mcp.context7.com/mcp
 claude mcp add -t http -s user gh_grep https://mcp.grep.app
-
-# perplexity（需要 API Key，申请：https://www.perplexity.ai/settings/api）
-claude mcp add -e PERPLEXITY_API_KEY=你的Key -s user perplexity -- npx -y @perplexity-ai/mcp-server
-
-# qmd（需要先安装：cargo install qmd）
+claude mcp add -e PERPLEXITY_API_KEY=$PERPLEXITY_API_KEY -s user perplexity -- npx -y @perplexity-ai/mcp-server
 claude mcp add -s user qmd -- qmd mcp
 ```
 
