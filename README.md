@@ -39,16 +39,20 @@ export PERPLEXITY_API_KEY=your_key_here    # 申请: https://www.perplexity.ai/s
 claude plugin marketplace add StringKe/ai-agents
 claude plugin install ai-agents@ai-agents-marketplace
 
-# 3. 手动复制 Rule（插件系统不支持 rules，必须手动）
+# 3. 手动复制 Rule（插件不支持 rules）
 git clone https://github.com/StringKe/ai-agents.git /tmp/ai-agents
 mkdir -p ~/.claude/rules
 cp /tmp/ai-agents/rules/sdlc-workflow.md ~/.claude/rules/
 rm -rf /tmp/ai-agents
+
+# 4. 手动配置 stdio 类型 MCP（插件仅分发 HTTP 类型）
+claude mcp add -e PERPLEXITY_API_KEY=$PERPLEXITY_API_KEY -s user perplexity -- npx -y @perplexity-ai/mcp-server
+claude mcp add -s user qmd -- qmd mcp
 ```
 
-插件自动加载 MCP 服务（context7、gh_grep、perplexity、qmd），API Key 从环境变量读取。
+插件自动加载 HTTP 类型 MCP（context7、gh_grep）。stdio 类型（perplexity、qmd）需要手动配置，因为 `npx`/`qmd` 的路径依赖本地 Node.js 安装方式（mise/nvm/系统），插件无法提供可移植的绝对路径。
 
-> **为什么需要第 3 步？** Claude Code 插件支持 skills、agents、hooks、MCP servers，但**不支持 rules**。`rules/sdlc-workflow.md` 是 SDLC 工作流的感知层，需要每次会话自动加载，只能通过 `~/.claude/rules/` 目录实现。
+> **为什么 Rule 和 stdio MCP 需要手动？** Claude Code 插件不支持 rules 分发。stdio 类型 MCP 由插件 spawn 子进程启动，不经过 shell 初始化，如果 Node.js 通过 mise/nvm 管理，`npx` 可能不在 PATH 中。`claude mcp add` 在配置时会解析当前 shell 环境的实际路径。
 
 ### 本地开发测试
 
