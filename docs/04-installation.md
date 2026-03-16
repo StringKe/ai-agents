@@ -3,10 +3,25 @@
 ## 方式一：Claude Code Plugin（推荐）
 
 ```bash
-claude plugin add https://github.com/StringKe/ai-agents.git
+# 1. 添加 marketplace
+claude plugin marketplace add StringKe/ai-agents
+
+# 2. 安装插件
+claude plugin install ai-agents@ai-agents-marketplace
 ```
 
-## 方式二：Claudex Sets
+安装后技能以 `ai-agents:` 为命名空间前缀，例如 `/ai-agents:brainstorming`。
+
+## 方式二：本地开发测试
+
+```bash
+git clone https://github.com/StringKe/ai-agents.git
+claude --plugin-dir ./ai-agents
+```
+
+`--plugin-dir` 模式下修改文件后执行 `/reload-plugins` 即可生效，无需重启。
+
+## 方式三：Claudex Sets
 
 ```bash
 # 全局安装（写入 ~/.claude/）
@@ -18,7 +33,7 @@ claudex sets add https://github.com/StringKe/ai-agents.git
 
 安装 claudex：`curl -fsSL https://raw.githubusercontent.com/StringKe/claudex/main/install.sh | bash`
 
-## 方式三：手动安装
+## 方式四：手动安装
 
 ```bash
 git clone https://github.com/StringKe/ai-agents.git
