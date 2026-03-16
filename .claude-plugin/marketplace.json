@@ -11,7 +11,7 @@
       "name": "ai-agents",
       "source": "./",
       "description": "Claude Code SDLC 工作流插件：16 个技能覆盖完整开发生命周期",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": {
         "name": "StringKe"
       },

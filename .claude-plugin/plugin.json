@@ -1,7 +1,7 @@
 {
   "name": "ai-agents",
   "description": "Claude Code SDLC 工作流插件：16 个技能覆盖需求探索、计划编写、测试驱动开发、系统化调试、代码审查、并行代理协作的完整开发生命周期",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "StringKe"
   },
